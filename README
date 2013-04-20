@@ -1,0 +1,3 @@
+CBWrapper is a bukkit plugin that I made, with the goal of allowing WorldEdit to work through command blocks. The way it does that is by creating a "dummy" player and running the command through him.
+This is the github repository that I made to share the source code.
+This plugin is on bukkitdev at http://dev.bukkit.org/server-mods/cbwrapper/

@@ -1,0 +1,10 @@
+name: CBWrapper
+main: misson20000.plugins.cbwrapper.CBWrapper
+version: 1.2
+
+commands:
+  cb:
+    description: This will forward commands as a dummy player, for command blocks
+    usage: /cb [-u <username>] <command> [args]
+    permission: cbwrapper.cb
+    permission-message: You don't have cbwrapper.cb permission
