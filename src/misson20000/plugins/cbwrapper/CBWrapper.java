@@ -18,28 +18,14 @@ public final class CBWrapper extends JavaPlugin {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if(cmd.getName().equals("cb")) {
-			if(args[0] != null) {
-				int i = 0;
+			if(args.length > 0) {
 				String name = sender.getName();
-				if(args[0].equals("-u")) {
-					if(args[1] != null) {
-						name = args[1];
-						i = 2;
-					} else {
-						sender.sendMessage("Error: The -u option requires one argument!");
-						return false;
-					}
-				}
-				if(args[i] == null) {
-					sender.sendMessage("Error: Where is the command?");
-				}
 				String concatargs = "";
-				for(; i < args.length; i++) {
+				for(int i = 1; i < args.length; i++) {
 					concatargs = concatargs + args[i] + " ";
 				}
-				sender.sendMessage("ConcatArgs: " + concatargs);
 				if(sender instanceof Player) {
-					sender.sendMessage("Please note that the /cb command is not intended for players.");
+					sender.sendMessage("Please note that the /cb command is not intended to be run by players");
 					getServer().dispatchCommand(sender, concatargs);
 					return true;
 				}
