@@ -58,6 +58,7 @@ public class DummyPlayer implements Player {
 	private double z;
 	private World world;
 	private String name;
+	
 	public DummyPlayer(String string, Server server, World world, int x, int y, int z) {
 		this.server = server;
 		this.world = world;
@@ -246,7 +247,7 @@ public class DummyPlayer implements Player {
 	}
 
 	@Override
-	public int getLastDamage() {
+	public double getLastDamage() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -325,12 +326,6 @@ public class DummyPlayer implements Player {
 
 	@Override
 	public void setCanPickupItems(boolean arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setLastDamage(int arg0) {
 		// TODO Auto-generated method stub
 
 	}
@@ -615,43 +610,19 @@ public class DummyPlayer implements Player {
 	}
 
 	@Override
-	public void damage(int arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void damage(int arg0, Entity arg1) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public int getHealth() {
+	public double getHealth() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int getMaxHealth() {
+	public double getMaxHealth() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public void resetMaxHealth() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setHealth(int arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setMaxHealth(int arg0) {
 		// TODO Auto-generated method stub
 
 	}
@@ -1306,6 +1277,89 @@ public class DummyPlayer implements Player {
 	@Override
 	public void setScoreboard(Scoreboard arg0) throws IllegalArgumentException,
 			IllegalStateException {
+		
+	}
+	@Override
+	@Deprecated
+	public int _INVALID_getLastDamage() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	@Deprecated
+	public void _INVALID_setLastDamage(int arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setLastDamage(double arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	@Deprecated
+	public void _INVALID_damage(int arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	@Deprecated
+	public void _INVALID_damage(int arg0, Entity arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	@Deprecated
+	public int _INVALID_getHealth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	@Deprecated
+	public int _INVALID_getMaxHealth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	@Deprecated
+	public void _INVALID_setHealth(int arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	@Deprecated
+	public void _INVALID_setMaxHealth(int arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void damage(double arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void damage(double arg0, Entity arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setHealth(double arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setMaxHealth(double arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public boolean isScaledHealth() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public void setScaleHealth(boolean arg0) {
+		// TODO Auto-generated method stub
 		
 	}
 
