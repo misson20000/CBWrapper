@@ -178,13 +178,8 @@ public class DummyPlayer implements Player {
     @Override public void acceptConversationInput(String arg0) { }
     @Override public boolean beginConversation(Conversation arg0) { return false; }
     @Override public boolean isConversing() { return false; }
-    @Override public void sendMessage(String arg0) {
-	server.getLogger().info("[CBWrapper] Something tried to send a dummy player the message '" + arg0 + "'"); }
-    @Override public void sendMessage(String[] arg0) {
-	for(int i = 0; i < arg0.length; i++) {
-	    sendMessage(arg0[i]);
-	}
-    }
+    @Override public void sendMessage(String arg0) { }
+    @Override public void sendMessage(String[] arg0) { }
     @Override public long getFirstPlayed() { return 0; }
     @Override public long getLastPlayed() { return 0; }
     @Override public Player getPlayer() { return this; }
@@ -231,8 +226,8 @@ public class DummyPlayer implements Player {
     @Override public void kickPlayer(String arg0) { }
     @Override public void loadData() { }
     @Override public boolean performCommand(String arg0) {
-	server.getLogger().info("[CBWrapper] A dummy player is trying to run " + arg0);
-	return false; }
+		server.getLogger().info("[CBWrapper] A dummy player is trying to run " + arg0);
+		return false; }
     @Override @Deprecated public void playEffect(Location arg0, Effect arg1, int arg2) { }
     @Override public <T> void playEffect(Location arg0, Effect arg1, T arg2) { }
     @Override @Deprecated public void playNote(Location arg0, byte arg1, byte arg2) { }
@@ -298,4 +293,5 @@ public class DummyPlayer implements Player {
     @Override public boolean setLeashHolder(Entity arg0) { return false; }
     @Override public Entity getLeashHolder() { return null; }
     @Override public boolean isLeashed() { return false; }
+	@Override public void setResourcePack(String arg0) { }
 }
