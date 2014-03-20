@@ -1,10 +1,15 @@
 name: CBWrapper
 main: misson20000.plugins.cbwrapper.CBWrapper
-version: 1.2
+version: 1.6 [Bukkit 1.7.2-R0.3]
 
 commands:
   cb:
     description: This will forward commands as a dummy player, for command blocks
-    usage: /cb [-u <username>] <command> [args]
+    usage: /cb [-o ~x ~y ~z] [-u username] (command) [args]
+    permission: cbwrapper.cb
+    permission-message: You don't have cbwrapper.cb permission
+  cw:
+    description: For CraftBook compatibility. This will forward commands as a dummy player, for command blocks
+    usage: /cw [-o ~x ~y ~z] [-u username] (command) [args]
     permission: cbwrapper.cb
     permission-message: You don't have cbwrapper.cb permission
