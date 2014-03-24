@@ -294,4 +294,21 @@ public class DummyPlayer implements Player {
     @Override public Entity getLeashHolder() { return null; }
     @Override public boolean isLeashed() { return false; }
 	@Override public void setResourcePack(String arg0) { }
+	@Override public <T extends Projectile> T launchProjectile(Class<? extends T> arg0, Vector arg1) { return null;	}
+	@Override public void decrementStatistic(Statistic arg0) throws IllegalArgumentException { }
+	@Override public void decrementStatistic(Statistic arg0, int arg1) throws IllegalArgumentException { }
+	@Override public void decrementStatistic(Statistic arg0, Material arg1) throws IllegalArgumentException { }
+	@Override public void decrementStatistic(Statistic arg0, EntityType arg1) throws IllegalArgumentException { }
+	@Override public void decrementStatistic(Statistic arg0, Material arg1, int arg2) throws IllegalArgumentException { }
+	@Override public void decrementStatistic(Statistic arg0, EntityType arg1, int arg2) { }
+	@Override public int getStatistic(Statistic arg0) throws IllegalArgumentException { return 0; }
+	@Override public int getStatistic(Statistic arg0, Material arg1) throws IllegalArgumentException { return 0; }
+	@Override public int getStatistic(Statistic arg0, EntityType arg1) throws IllegalArgumentException { return 0; }
+	@Override public boolean hasAchievement(Achievement arg0) {	return false; }
+	@Override public void incrementStatistic(Statistic arg0, EntityType arg1) throws IllegalArgumentException {	}
+	@Override public void incrementStatistic(Statistic arg0, EntityType arg1, int arg2)	throws IllegalArgumentException { }
+	@Override public void removeAchievement(Achievement arg0) { }
+	@Override public void setStatistic(Statistic arg0, int arg1) throws IllegalArgumentException { }
+	@Override public void setStatistic(Statistic arg0, Material arg1, int arg2)	throws IllegalArgumentException { }
+	@Override public void setStatistic(Statistic arg0, EntityType arg1, int arg2) { }
 }
