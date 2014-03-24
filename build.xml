@@ -11,7 +11,7 @@
     <property name="source" value="1.7"/>
     <path id="CBWrapper.classpath">
         <pathelement location="src"/>
-        <pathelement location="bukkit-1.7.2-R0.2.jar"/>
+        <pathelement location="bukkit.jar"/>
     </path>
     <target name="init">
         <mkdir dir="src"/>
