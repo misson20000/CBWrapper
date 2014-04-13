@@ -5,6 +5,6 @@ version: 1.7
 commands:
   cw:
     description: This will forward commands as a dummy player for command blocks
-    usage: /cw [-w world] [-o ~x ~y ~z] [-u username] (command) [args]
+    usage: /cw [-w world] [-o x y z] [-u username] (command) [args]
     permission: cbwrapper.cb
     permission-message: You don't have cbwrapper.cb permission

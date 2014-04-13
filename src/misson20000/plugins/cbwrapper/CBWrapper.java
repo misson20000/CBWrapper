@@ -61,6 +61,10 @@ public final class CBWrapper extends JavaPlugin {
 			}
 			if(args[i].equals("-w")) {
 			    world = getServer().getWorld(args[++i]);
+			    if(world == null) {
+				sender.sendMessage("World '" + args[i] + "' does not exist");
+				return false;
+			    }
 			}
 			if(args[i].equals("-o")) {
 			    if(args.length - ++i >= 3) {
