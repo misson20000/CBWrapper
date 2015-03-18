@@ -272,15 +272,7 @@ public class DummyPlayer implements Player {
     @Override public void resetPlayerWeather() {  }
     @Override public void setPlayerWeather(WeatherType arg0) {  }
     @Override public void setScoreboard(Scoreboard arg0) throws IllegalArgumentException, IllegalStateException { }
-    @Override @Deprecated public int _INVALID_getLastDamage() { return 0; }
-    @Override @Deprecated public void _INVALID_setLastDamage(int arg0) {  }
     @Override public void setLastDamage(double arg0) {  }
-    @Override @Deprecated public void _INVALID_damage(int arg0) {  }
-    @Override @Deprecated public void _INVALID_damage(int arg0, Entity arg1) {  }
-    @Override @Deprecated public int _INVALID_getHealth() { return 0; }
-    @Override @Deprecated public int _INVALID_getMaxHealth() { return 0; }
-    @Override @Deprecated public void _INVALID_setHealth(int arg0) {  }
-    @Override @Deprecated public void _INVALID_setMaxHealth(int arg0) {  }
     @Override public void damage(double arg0) {  }
     @Override public void damage(double arg0, Entity arg1) {  }
     @Override public void setHealth(double arg0) {  }
@@ -312,4 +304,7 @@ public class DummyPlayer implements Player {
     @Override public void setStatistic(Statistic arg0, Material arg1, int arg2)	throws IllegalArgumentException { }
     @Override public void setStatistic(Statistic arg0, EntityType arg1, int arg2) { }
     @Override public void sendSignChange(Location l, String[] str) {}
+	@Override public List<Block> getLineOfSight(Set<Material> transparent, int maxDistance) {	return null; }
+	@Override public Block getTargetBlock(Set<Material> transparent, int maxDistance) { return null; }
+	@Override public List<Block> getLastTwoTargetBlocks(Set<Material> transparent, int maxDistance) { return null; }
 }

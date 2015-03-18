@@ -1,6 +1,6 @@
 name: CBWrapper
 main: misson20000.plugins.cbwrapper.CBWrapper
-version: 1.7
+version: 1.8_reflections
 
 commands:
   cw:
