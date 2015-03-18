@@ -58,14 +58,16 @@ public class DummyPlayer implements Player {
     private double z;
     private World world;
     private String name;
+    private UUID uuid;
     
-    public DummyPlayer(String string, Server server, World world, int x, int y, int z) {
-	this.server = server;
-	this.world = world;
-	this.x = x;
-	this.y = y;
-	this.z = z;
-	this.name = string;
+    public DummyPlayer(String name, Server server, World world, int x, int y, int z) {
+		this.server = server;
+		this.world = world;
+		this.x = x;
+		this.y = y;
+		this.z = z;
+		this.name = name;
+		this.uuid = UUID.nameUUIDFromBytes(name.getBytes());
     }
     @Override public void closeInventory() {}
     @Override public Inventory getEnderChest() { return null; }
@@ -132,7 +134,7 @@ public class DummyPlayer implements Player {
     @Override public Server getServer() { return server; }
     @Override public int getTicksLived() { return 0; }
     @Override public EntityType getType() { return EntityType.PLAYER; }
-    @Override public UUID getUniqueId() { return null; }
+    @Override public UUID getUniqueId() { return uuid; }
     @Override public Entity getVehicle() { return null; }
     @Override public Vector getVelocity() { return null; }
     @Override public World getWorld() { return world; }
