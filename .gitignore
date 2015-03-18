@@ -5,3 +5,4 @@ bin/
 *.class
 *.jar
 server/
+test/
