@@ -1,73 +1,61 @@
 package misson20000.plugins.cbwrapper;
 
-import java.net.InetSocketAddress;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
-import org.bukkit.Achievement;
-import org.bukkit.Effect;
-import org.bukkit.EntityEffect;
+import net.minecraft.server.v1_8_R1.EntityPlayer;
+import net.minecraft.server.v1_8_R1.EnumProtocolDirection;
+import net.minecraft.server.v1_8_R1.PlayerInteractManager;
+
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.Instrument;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Note;
 import org.bukkit.Server;
-import org.bukkit.Sound;
-import org.bukkit.Statistic;
-import org.bukkit.WeatherType;
 import org.bukkit.World;
-import org.bukkit.block.Block;
-import org.bukkit.conversations.Conversation;
-import org.bukkit.conversations.ConversationAbandonedEvent;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Egg;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Projectile;
-import org.bukkit.entity.Snowball;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
-import org.bukkit.inventory.EntityEquipment;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryView;
-import org.bukkit.inventory.InventoryView.Property;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.map.MapView;
-import org.bukkit.metadata.MetadataValue;
+import org.bukkit.craftbukkit.v1_8_R1.CraftServer;
+import org.bukkit.craftbukkit.v1_8_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
 import org.bukkit.permissions.Permission;
-import org.bukkit.permissions.PermissionAttachment;
-import org.bukkit.permissions.PermissionAttachmentInfo;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.util.Vector;
 
-public class DummyPlayer implements Player {
+import com.mojang.authlib.GameProfile;
 
-    private Server server;
+public class DummyPlayer extends CraftPlayer {
+
+    /*private Server server;
     private double x;
     private double y;
     private double z;
     private World world;
-    private String name;
-    
-    public DummyPlayer(String string, Server server, World world, int x, int y, int z) {
-	this.server = server;
-	this.world = world;
-	this.x = x;
-	this.y = y;
-	this.z = z;
-	this.name = string;
+    private String name;*/
+    private UUID uuid;
+
+    @SuppressWarnings("unchecked")
+	public DummyPlayer(String name, Server server, World world, int x, int y, int z) {
+        super((CraftServer) Bukkit.getServer(),
+        		new EntityPlayer(((CraftServer) server).getServer(),
+        						 ((CraftWorld) world).getHandle(),
+        						 new GameProfile(UUID.nameUUIDFromBytes(name.getBytes()), name),
+        						 new PlayerInteractManager(((CraftWorld) world).getHandle())));
+        
+        /*this.server = server;
+        this.world = world;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.name = name;*/
+        this.uuid = UUID.nameUUIDFromBytes(name.getBytes());        
+        this.setGameMode(GameMode.CREATIVE);        
+        
+        ((EntityPlayer) this.entity).playerConnection = new DummyPlayerConnection(
+        		((CraftServer) server).getServer(),
+        		new DummyNetworkManager(EnumProtocolDirection.CLIENTBOUND),
+        		(EntityPlayer) this.entity);
+        
+        ((CraftServer) this.getServer()).getHandle().players.add(this.entity);
+        
+        super.teleport(new Location(world, x, y, z));
     }
-    @Override public void closeInventory() {}
+    
+    /*@Override public void closeInventory() {}
     @Override public Inventory getEnderChest() { return null; }
     @Override public int getExpToLevel() { return 0; }
     @Override public GameMode getGameMode() { return GameMode.CREATIVE; }
@@ -97,7 +85,7 @@ public class DummyPlayer implements Player {
     @Override public double getEyeHeight(boolean arg0) { return y; }
     @Override public Location getEyeLocation() { return new Location(world, x, y, z); }
     @Override public Player getKiller() { return null; }
-    @Override public double getLastDamage() { return 0; }
+    //@Override public double getLastDamage() { return 0; }
     @Override @Deprecated public List<Block> getLastTwoTargetBlocks(HashSet<Byte> arg0, int arg1) { return null; }
     @Override @Deprecated public List<Block> getLineOfSight(HashSet<Byte> arg0, int arg1) { return null; }
     @Override public int getMaximumAir() { return 0; }
@@ -131,9 +119,9 @@ public class DummyPlayer implements Player {
     @Override public Entity getPassenger() { return null; }
     @Override public Server getServer() { return server; }
     @Override public int getTicksLived() { return 0; }
-    @Override public EntityType getType() { return EntityType.PLAYER; }
-    @Override public UUID getUniqueId() { return null; }
-    @Override public Entity getVehicle() { return null; }
+    @Override public EntityType getType() { return EntityType.PLAYER; }*/
+    @Override public UUID getUniqueId() { return uuid; }
+    /*@Override public Entity getVehicle() { return null; }
     @Override public Vector getVelocity() { return null; }
     @Override public World getWorld() { return world; }
     @Override public boolean isDead() { return false; }
@@ -149,44 +137,60 @@ public class DummyPlayer implements Player {
     @Override public boolean setPassenger(Entity arg0) { return false; }
     @Override public void setTicksLived(int arg0) { }
     @Override public void setVelocity(Vector arg0) { }
-    @Override public boolean teleport(Location arg0) { return false; }
-    @Override public boolean teleport(Entity arg0) { return false; }
-    @Override public boolean teleport(Location arg0, TeleportCause arg1) { return false; }
-    @Override public boolean teleport(Entity arg0, TeleportCause arg1) { return false; }
-    @Override public List<MetadataValue> getMetadata(String arg0) { return null; }
-    @Override public boolean hasMetadata(String arg0) { return false; }
-    @Override public void removeMetadata(String arg0, Plugin arg1) { }
-    @Override public void setMetadata(String arg0, MetadataValue arg1) { }
+    @Override public boolean teleport(Location loc) {
+        this.x = loc.getX();
+        this.y = loc.getY();
+        this.z = loc.getZ();
+        this.world = loc.getWorld();
+        return true;
+    }
+    @Override public boolean teleport(Entity e) { this.teleport(e.getLocation()); return true; }
+    @Override public boolean teleport(Location loc, TeleportCause arg1) { this.teleport(loc); return true; }
+    @Override public boolean teleport(Entity e, TeleportCause arg1) { this.teleport(e.getLocation()); return true; }
+    private Map<String, List<MetadataValue>> metadata;
+
+    @Override public List<MetadataValue> getMetadata(String arg0) { return metadata.get(arg0); }
+    @Override public boolean hasMetadata(String arg0) { return metadata.containsKey(arg0); }
+    @Override public void removeMetadata(String arg0, Plugin arg1) { metadata.put(arg0, null); }
+    @Override public void setMetadata(String arg0, MetadataValue arg1) {
+        System.out.println("someone's putting metadata: [" + arg0 + "] -> [" + arg1.asString() + "]");
+        if(!metadata.containsKey(arg0)) {
+            metadata.put(arg0, new ArrayList<MetadataValue>());
+        }
+        metadata.get(arg0).add(arg1);
+    }
     @Override public double getHealth() { return 0; }
-    @Override public double getMaxHealth() { return 0; }
+    //@Override public double getMaxHealth() { return 0; }
     @Override public void resetMaxHealth() { }
     @Override public PermissionAttachment addAttachment(Plugin arg0) { return null; }
     @Override public PermissionAttachment addAttachment(Plugin arg0, int arg1) { return null; }
     @Override public PermissionAttachment addAttachment(Plugin arg0, String arg1, boolean arg2) { return null; }
     @Override public PermissionAttachment addAttachment(Plugin arg0, String arg1, boolean arg2, int arg3) { return null; }
     @Override public Set<PermissionAttachmentInfo> getEffectivePermissions() { return null; }
-    @Override public boolean hasPermission(String arg0) { return true; }
-    @Override public boolean hasPermission(Permission arg0) { return true; }
+    */@Override public boolean hasPermission(String arg0) { return true; }
+    @Override public boolean hasPermission(Permission arg0) { return true; }/*
     @Override public boolean isPermissionSet(String arg0) { return false; }
     @Override public boolean isPermissionSet(Permission arg0) { return false; }
     @Override public void recalculatePermissions() { }
     @Override public void removeAttachment(PermissionAttachment arg0) { }
-    @Override public boolean isOp() { return true; }
-    @Override public void setOp(boolean arg0) { }
+    */@Override public boolean isOp() { return true; }
+    @Override public void setOp(boolean arg0) { }/*
     @Override public void abandonConversation(Conversation arg0) { }
     @Override public void abandonConversation(Conversation arg0, ConversationAbandonedEvent arg1) { }
     @Override public void acceptConversationInput(String arg0) { }
     @Override public boolean beginConversation(Conversation arg0) { return false; }
-    @Override public boolean isConversing() { return false; }
-    @Override public void sendMessage(String arg0) { }
+    @Override public boolean isConversing() { return false; }*/
+    @Override public void sendMessage(String arg0) {
+        //System.out.println("CBWrapper Debug (" + uuid + "): " + arg0);
+    }/*
     @Override public void sendMessage(String[] arg0) { }
     @Override public long getFirstPlayed() { return 0; }
     @Override public long getLastPlayed() { return 0; }
     @Override public Player getPlayer() { return this; }
     @Override public boolean hasPlayedBefore() { return true; }
-    @Override public boolean isBanned() { return false; }
+    */@Override public boolean isBanned() { return false; }
     @Override public boolean isOnline() { return true; }
-    @Override public boolean isWhitelisted() { return true; }
+    @Override public boolean isWhitelisted() { return true; }/*
     @Override public void setBanned(boolean arg0) { }
     @Override public void setWhitelisted(boolean arg0) { }
     @Override public Map<String, Object> serialize() { return null; }
@@ -205,7 +209,7 @@ public class DummyPlayer implements Player {
     @Override public float getFlySpeed() { return 0; }
     @Override public int getFoodLevel() { return 0; }
     @Override public int getLevel() { return 0; }
-    @Override public String getPlayerListName() { return null; }
+    @Override public String getPlayerListName() { return name; }
     @Override public long getPlayerTime() { return 0; }
     @Override public long getPlayerTimeOffset() { return 0; }
     @Override public float getSaturation() { return 0; }
@@ -262,7 +266,7 @@ public class DummyPlayer implements Player {
     @Override public void setWalkSpeed(float arg0) throws IllegalArgumentException { }
     @Override public void showPlayer(Player arg0) { }
     @Override @Deprecated public void updateInventory() { }
-    @Override public String getCustomName() { return null; }
+    @Override public String getCustomName() { return name; }
     @Override public boolean isCustomNameVisible() { return false; }
     @Override public void setCustomName(String arg0) { }
     @Override public void setCustomNameVisible(boolean arg0) { }
@@ -311,5 +315,5 @@ public class DummyPlayer implements Player {
     @Override public void setStatistic(Statistic arg0, int arg1) throws IllegalArgumentException { }
     @Override public void setStatistic(Statistic arg0, Material arg1, int arg2)	throws IllegalArgumentException { }
     @Override public void setStatistic(Statistic arg0, EntityType arg1, int arg2) { }
-    @Override public void sendSignChange(Location l, String[] str) {}
+    @Override public void sendSignChange(Location l, String[] str) {}*/
 }
