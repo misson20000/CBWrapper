@@ -61,13 +61,13 @@ public class DummyPlayer implements Player {
     private UUID uuid;
     
     public DummyPlayer(String name, Server server, World world, int x, int y, int z) {
-		this.server = server;
-		this.world = world;
-		this.x = x;
-		this.y = y;
-		this.z = z;
-		this.name = name;
-		this.uuid = UUID.nameUUIDFromBytes(name.getBytes());
+        this.server = server;
+        this.world = world;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.name = name;
+        this.uuid = UUID.nameUUIDFromBytes(name.getBytes());
     }
     @Override public void closeInventory() {}
     @Override public Inventory getEnderChest() { return null; }
@@ -228,8 +228,8 @@ public class DummyPlayer implements Player {
     @Override public void kickPlayer(String arg0) { }
     @Override public void loadData() { }
     @Override public boolean performCommand(String arg0) {
-		server.getLogger().info("[CBWrapper] A dummy player is trying to run " + arg0);
-		return false; }
+        server.getLogger().info("[CBWrapper] A dummy player is trying to run " + arg0);
+        return false; }
     @Override @Deprecated public void playEffect(Location arg0, Effect arg1, int arg2) { }
     @Override public <T> void playEffect(Location arg0, Effect arg1, T arg2) { }
     @Override @Deprecated public void playNote(Location arg0, byte arg1, byte arg2) { }
@@ -288,7 +288,7 @@ public class DummyPlayer implements Player {
     @Override public Entity getLeashHolder() { return null; }
     @Override public boolean isLeashed() { return false; }
     @Override public void setResourcePack(String arg0) { }
-    @Override public <T extends Projectile> T launchProjectile(Class<? extends T> arg0, Vector arg1) { return null;	}
+    @Override public <T extends Projectile> T launchProjectile(Class<? extends T> arg0, Vector arg1) { return null;     }
     @Override public void decrementStatistic(Statistic arg0) throws IllegalArgumentException { }
     @Override public void decrementStatistic(Statistic arg0, int arg1) throws IllegalArgumentException { }
     @Override public void decrementStatistic(Statistic arg0, Material arg1) throws IllegalArgumentException { }
@@ -298,15 +298,15 @@ public class DummyPlayer implements Player {
     @Override public int getStatistic(Statistic arg0) throws IllegalArgumentException { return 0; }
     @Override public int getStatistic(Statistic arg0, Material arg1) throws IllegalArgumentException { return 0; }
     @Override public int getStatistic(Statistic arg0, EntityType arg1) throws IllegalArgumentException { return 0; }
-    @Override public boolean hasAchievement(Achievement arg0) {	return false; }
-    @Override public void incrementStatistic(Statistic arg0, EntityType arg1) throws IllegalArgumentException {	}
-    @Override public void incrementStatistic(Statistic arg0, EntityType arg1, int arg2)	throws IllegalArgumentException { }
+    @Override public boolean hasAchievement(Achievement arg0) { return false; }
+    @Override public void incrementStatistic(Statistic arg0, EntityType arg1) throws IllegalArgumentException { }
+    @Override public void incrementStatistic(Statistic arg0, EntityType arg1, int arg2) throws IllegalArgumentException { }
     @Override public void removeAchievement(Achievement arg0) { }
     @Override public void setStatistic(Statistic arg0, int arg1) throws IllegalArgumentException { }
-    @Override public void setStatistic(Statistic arg0, Material arg1, int arg2)	throws IllegalArgumentException { }
+    @Override public void setStatistic(Statistic arg0, Material arg1, int arg2) throws IllegalArgumentException { }
     @Override public void setStatistic(Statistic arg0, EntityType arg1, int arg2) { }
     @Override public void sendSignChange(Location l, String[] str) {}
-	@Override public List<Block> getLineOfSight(Set<Material> transparent, int maxDistance) {	return null; }
-	@Override public Block getTargetBlock(Set<Material> transparent, int maxDistance) { return null; }
-	@Override public List<Block> getLastTwoTargetBlocks(Set<Material> transparent, int maxDistance) { return null; }
+    @Override public List<Block> getLineOfSight(Set<Material> transparent, int maxDistance) {   return null; }
+    @Override public Block getTargetBlock(Set<Material> transparent, int maxDistance) { return null; }
+    @Override public List<Block> getLastTwoTargetBlocks(Set<Material> transparent, int maxDistance) { return null; }
 }
