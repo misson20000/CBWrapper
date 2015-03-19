@@ -9,6 +9,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.Location;
 import org.bukkit.World;
 
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
@@ -124,6 +125,7 @@ public final class CBWrapper extends JavaPlugin {
                 DummyPlayer dummy;
                 if(dummies.containsKey(name)) {
                     dummy = dummies.get(name);
+                    dummy.teleport(new Location(world, x, y, z));
                 } else {
                     dummy = new DummyPlayer(name, getServer(),
                                             world, x, y, z);
@@ -134,7 +136,7 @@ public final class CBWrapper extends JavaPlugin {
                                 
                     dummies.put(name, dummy);
                 }
-                            
+                
                 getServer().dispatchCommand(dummy, concatargs);
             } else {
                 sender.sendMessage("Not enough arguments");
