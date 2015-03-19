@@ -315,4 +315,12 @@ public class DummyPlayer implements Player {
     @Override public List<Block> getLineOfSight(Set<Material> transparent, int maxDistance) {   return null; }
     @Override public Block getTargetBlock(Set<Material> transparent, int maxDistance) { return null; }
     @Override public List<Block> getLastTwoTargetBlocks(Set<Material> transparent, int maxDistance) { return null; }
+	@Override public int _INVALID_getLastDamage() { return 0; }
+	@Override public void _INVALID_setLastDamage(int arg0) { }
+	@Override public void _INVALID_damage(int arg0) { }
+	@Override public void _INVALID_damage(int arg0, Entity arg1) { }
+	@Override public int  _INVALID_getHealth() { return 0; }
+	@Override public int  _INVALID_getMaxHealth() { return 0; }
+	@Override public void _INVALID_setHealth(int arg0) { }
+	@Override public void _INVALID_setMaxHealth(int arg0) { }
 }
