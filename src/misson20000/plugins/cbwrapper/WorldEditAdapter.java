@@ -44,10 +44,8 @@ public class WorldEditAdapter {
  
     public void createSession(UUID uuid, SessionKey sessionKey) {
         try {
-            sessionsObject.put(
-                               uuid,
-                               sessionHolderConstructor.newInstance(sessionKey, storeObject.load(uuid))
-                               );
+            sessionsObject.put(uuid,
+                               sessionHolderConstructor.newInstance(sessionKey, storeObject.load(uuid)));
         } catch (ReflectiveOperationException | IOException e) {
             e.printStackTrace();
         }

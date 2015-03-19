@@ -151,10 +151,16 @@ public class DummyPlayer implements Player {
     @Override public boolean setPassenger(Entity arg0) { return false; }
     @Override public void setTicksLived(int arg0) { }
     @Override public void setVelocity(Vector arg0) { }
-    @Override public boolean teleport(Location arg0) { return false; }
-    @Override public boolean teleport(Entity arg0) { return false; }
-    @Override public boolean teleport(Location arg0, TeleportCause arg1) { return false; }
-    @Override public boolean teleport(Entity arg0, TeleportCause arg1) { return false; }
+    @Override public boolean teleport(Location arg0) {
+    	this.x = arg0.getX();
+    	this.y = arg0.getY();
+    	this.z = arg0.getZ();
+    	this.world = arg0.getWorld();
+    	return true;
+    }
+    @Override public boolean teleport(Entity arg0) { return teleport(arg0.getLocation()); }
+    @Override public boolean teleport(Location arg0, TeleportCause arg1) { return teleport(arg0); }
+    @Override public boolean teleport(Entity arg0, TeleportCause arg1) { return teleport(arg0); }
     @Override public List<MetadataValue> getMetadata(String arg0) { return null; }
     @Override public boolean hasMetadata(String arg0) { return false; }
     @Override public void removeMetadata(String arg0, Plugin arg1) { }
@@ -180,7 +186,7 @@ public class DummyPlayer implements Player {
     @Override public void acceptConversationInput(String arg0) { }
     @Override public boolean beginConversation(Conversation arg0) { return false; }
     @Override public boolean isConversing() { return false; }
-    @Override public void sendMessage(String arg0) { }
+    @Override public void sendMessage(String arg0) { } //System.out.println(name + ": " + arg0); }
     @Override public void sendMessage(String[] arg0) { }
     @Override public long getFirstPlayed() { return 0; }
     @Override public long getLastPlayed() { return 0; }
