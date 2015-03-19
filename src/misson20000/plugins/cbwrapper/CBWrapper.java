@@ -43,7 +43,11 @@ public final class CBWrapper extends JavaPlugin {
 
     public int parseOffset(int orig, String offset) {
         if(offset.startsWith("~")) {
-            return orig + Integer.parseInt(offset.substring(1));
+        	if(offset.length() > 1) {
+        		return orig + Integer.parseInt(offset.substring(1));
+        	} else {
+        		return orig;
+        	}
         } else {
             return Integer.parseInt(offset);
         }
@@ -104,6 +108,7 @@ public final class CBWrapper extends JavaPlugin {
                         y = parseOffset(y, args[i++]);
                         if(!haspos && args[i].startsWith("~")) {
                             sender.sendMessage("The console has no position for a relative offset");
+                            return false;
                         }
                         z = parseOffset(z, args[i]);
                     } else {
