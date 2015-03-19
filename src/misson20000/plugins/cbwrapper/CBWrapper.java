@@ -22,7 +22,7 @@ public final class CBWrapper extends JavaPlugin {
         
     @Override
     public void onEnable() {
-        dummies =  new HashMap<String, DummyPlayer>();
+        dummies = new HashMap<String, DummyPlayer>();
         
         wePlugin = (WorldEditPlugin) this.getServer().getPluginManager().getPlugin("WorldEdit");
         if(wePlugin != null) {
@@ -32,7 +32,7 @@ public final class CBWrapper extends JavaPlugin {
                 weAdapter = null;
                 wePlugin  = null;
                 e.printStackTrace();
-                this.getLogger().warning("Error while initializing WorldEditAdapter. Report this to CBWrapper devs. Until this is fixed, CBWrapper won't work with WorldEdit");
+                this.getLogger().warning("Error while initializing WorldEditAdapter. Report this to CBWrapper devs. Until this is fixed, CBWrapper won't work properly with WorldEdit");
             }
         }
     }
