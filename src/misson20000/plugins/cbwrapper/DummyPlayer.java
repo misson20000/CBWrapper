@@ -186,7 +186,7 @@ public class DummyPlayer implements Player {
     @Override public void acceptConversationInput(String arg0) { }
     @Override public boolean beginConversation(Conversation arg0) { return false; }
     @Override public boolean isConversing() { return false; }
-    @Override public void sendMessage(String arg0) { } //System.out.println(name + ": " + arg0); }
+    @Override public void sendMessage(String arg0) { System.out.println(name + ": " + arg0); }
     @Override public void sendMessage(String[] arg0) { }
     @Override public long getFirstPlayed() { return 0; }
     @Override public long getLastPlayed() { return 0; }
